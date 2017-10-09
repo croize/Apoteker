@@ -16,3 +16,13 @@ Route::get('/', function () {
 });
 
 Route::resource('resep', 'ResepController');
+Route::resource('pendaftaran', 'PendaftaranController');
+Route::resource('dokter', 'DokterController');
+Route::resource('poli', 'PoliklinikController');
+
+Route::get('/obat','ObatController@index');
+Route::get('/obat/create','ObatController@create');
+Route::post('/obat/store','ObatController@store');
+Route::get('/obat/edit/{id}','ObatController@edit');
+Route::post('/obat/update/{id}','ObatController@update');
+Route::get('/obat/delete/{id}','ObatController@destroy');

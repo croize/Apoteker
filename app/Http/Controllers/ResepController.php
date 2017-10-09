@@ -12,10 +12,11 @@ class ResepController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $val = Resep::all();
-        return view('resep.index')->with('vala', $val);
+        $query = $request->get('q');
+        $vala = Resep::where('NomorResep', 'LIKE', '%' . $query . '%')->orWhere('KodePsn', 'LIKE', '%' . $query . '%')->paginate(10);
+        return view('resep.index', compact('vala', 'query'));
     }
 
     /**
@@ -82,7 +83,8 @@ class ResepController extends Controller
      */
     public function edit($id)
     {
-        //
+        $as = Resep::find($id);
+        return view('resep.edit')->with('su',$as);
     }
 
     /**
@@ -94,7 +96,30 @@ class ResepController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      //Ini NomorResep , dll yang berada di line 41 - 47 merupakan atribute dari Table Resep
+      $this->validate($request, [
+        'NomorResep' => 'required',
+        'TanggalResep' => 'required',
+        'KodeDkt' => 'required',
+        'KodePsn' => 'required',
+        'KodePlk' => 'required',
+        'TotalHarga' => 'required | integer',
+        'Bayar' => 'required | integer',
+      ]);
+
+        $u = Resep::find($id); // <---- Resep itu adalah nama model nya
+        $u->NomorResep = $request->NomorResep;
+        $u->TanggalResep = $request->TanggalResep;// $u->atributetable = $request->nameyangdiform
+        $u->KodeDkt = $request->KodeDkt;
+        $u->KodePsn = $request->KodePsn;
+        $u->KodePlk = $request->KodePlk;
+        $u->TotalHarga = $request->TotalHarga;
+        $u->Bayar = $request->Bayar;
+        $a = $request->TotalHarga - $request->Bayar;
+        $u->Kembali = $a;
+        $u->save();
+
+        return redirect('resep'); // Ini isinya boleh diisi sama kaya route yang di pakai buat ngejalanin Controller ini
     }
 
     /**
