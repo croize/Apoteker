@@ -19,6 +19,7 @@ Route::resource('resep', 'ResepController');
 Route::resource('pendaftaran', 'PendaftaranController');
 Route::resource('dokter', 'DokterController');
 Route::resource('poli', 'PoliklinikController');
+Route::get('/poli/delete/{id}','PoliklinikController@destroy');
 
 Route::get('/obat','ObatController@index');
 Route::get('/obat/create','ObatController@create');

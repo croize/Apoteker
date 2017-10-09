@@ -37,17 +37,21 @@ class PoliklinikController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-          'KodePlk' => 'required';
+          'KodePlk' => 'required',
           'NamaPlk' => 'required',
         ]);
-
         $as = new Poliklinik;
         $as->KodePlk = $request->KodePlk;
         $as->NamaPlk = $request->NamaPlk;
-        $as->save();
+        $ca = $request['KodePlk'];
+        $ccd = Poliklinik::where('KodePlk', $ca)->value('KodePlk');
+        if ($ccd==NULL) {
 
-        return redirect('poli');
-
+          $as->save();
+          return redirect('poli')->with('message', 'Data Berhasil di tambahkan');
+        }else{
+          return redirect('poli/create')->with('message', 'Kode Poliklinik sudah tersedia, silahkan masukan Kode lain');
+        }
     }
 
     /**
@@ -69,7 +73,8 @@ class PoliklinikController extends Controller
      */
     public function edit($id)
     {
-        return view('poliklinik.edit');
+        $aw = Poliklinik::find($id);
+        return view('poliklinik.edit')->with('as',$aw);
     }
 
     /**
@@ -100,6 +105,9 @@ class PoliklinikController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $as = Poliklinik::find($id);
+        $as->delete();
+
+        return redirect('poli');
     }
 }

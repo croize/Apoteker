@@ -104,7 +104,9 @@
                 </tr>
               </thead>
               <tbody>
-                @yield('data')
+                <tr>
+                    @yield('data')
+                </tr>
               </tbody>
             </table>
           </div>
