@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Pendaftaran;
-use App\Dokter;
+use App\Pembayaran;
 
-class PendaftaranController extends Controller
+class PembayaranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
-        $a = Pendaftaran::all();
-        return view('pendaftaran.index')->with('n',$a);
+        $as = Pembayaran::all();
+        return view('pembayaran.index')->with('susu',$as);
     }
 
     /**
@@ -26,8 +25,7 @@ class PendaftaranController extends Controller
      */
     public function create()
     {
-        $a = Dokter::all();
-        return view('pendaftaran.create')->with('b', $a);
+        return view('pembayaran.create');
     }
 
     /**
@@ -39,27 +37,20 @@ class PendaftaranController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-          'NomorPendf' => 'required',
-          'TanggalPendf' => 'required',
-          'KodeDkt' => 'required',
+          'NomorByr' => 'required',
           'KodePsn' => 'required',
-          'KodePlk' => 'required',
-          'Biaya' => 'required | integer',
-          'Ket' => 'required',
+          'TanggalByr' => 'required',
+          'JumlahByr' => 'required',
         ]);
 
-        $b = new Pendaftaran();
-        $b->NomorPendf = $request->NomorPendf;
-        $b->TanggalPendf = $request->TanggalPendf;
-        $b->KodeDkt = $request->KodeDkt;
-        $b->KodePsn = $request->KodePsn;
-        $b->KodePlk = $request->KodePlk;
-        $b->Biaya = $request->Biaya;
-        $b->Ket = $request->Ket;
-        $b->save();
+        $sa = new Pembayaran();
+        $sa->NomorByr = $request->NomorByr;
+        $sa->KodePsn = $request->KodePsn;
+        $sa->TanggalByr = $request->TanggalByr;
+        $sa->JumlahByr = $request->JumlahByr;
+        $sa->save();
 
-        return redirect('pendaftaran');
-
+        return redirect('pembayaran');
     }
 
     /**
@@ -81,9 +72,8 @@ class PendaftaranController extends Controller
      */
     public function edit($id)
     {
-        $b = Pendaftaran::find($id);
-        $c = Dokter::all();
-        return view('pendaftaran.edit')->with('yu', $b)->with('b', $c);
+        $as = Pembayaran::find($id);
+        return view('pembayaran.edit')->with('susu',$as);
     }
 
     /**
@@ -96,25 +86,18 @@ class PendaftaranController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request,[
-        'NomorPendf' => 'required',
-        'TanggalPendf' => 'required',
-        'KodeDkt' => 'required',
         'KodePsn' => 'required',
-        'KodePlk' => 'required',
-        'Biaya' => 'required | integer',
-        'Ket' => 'required',
+        'TanggalByr' => 'required',
+        'JumlahByr' => 'required',
       ]);
 
-      $b = Pendaftaran::find($id);
-      $b->TanggalPendf = $request->TanggalPendf;
-      $b->KodeDkt = $request->KodeDkt;
-      $b->KodePsn = $request->KodePsn;
-      $b->KodePlk = $request->KodePlk;
-      $b->Biaya = $request->Biaya;
-      $b->Ket = $request->Ket;
-      $b->save();
+      $sa = Pembayaran::find($id);
+      $sa->KodePsn = $request->KodePsn;
+      $sa->TanggalByr = $request->TanggalByr;
+      $sa->JumlahByr = $request->JumlahByr;
+      $sa->save();
 
-      return redirect('pendaftaran');
+      return redirect('pembayaran');
     }
 
     /**
@@ -125,6 +108,8 @@ class PendaftaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sa = Pembayaran::find($id);
+        $sa->delete();
+        return redirect('pembayaran');
     }
 }
