@@ -10,4 +10,9 @@ class Obat extends Model
   protected $primaryKey = 'Kode_Obat';
   protected $fillable = ['Nama_Obat','Jenis_Obat','Katagori','Harga_Obat','Jumlah_Obat'];
   public $timestamps = false;
+
+  public function resep()
+ {
+     return $this->hasMany('App\Resep');
+ }
 }

@@ -31,3 +31,7 @@ Route::get('/obat/delete/{id}','ObatController@destroy');
 
 Route::resource('pembayaran', 'PembayaranController');
 Route::get('/pembayaran/delete/{id}','PembayaranController@destroy');
+
+Route::resource('detail', 'DetailController');
+Route::resource('pasien', 'PasienController');
+Route::get('/pasien/delete/{id}','PasienController@destroy');

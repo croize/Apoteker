@@ -19,7 +19,7 @@
       <label for="">Jumlah Bayar</label>
       <input type="text" name="JumlahByr" class="form-control" value="">
     </div>
-    <input type="submit" name="" value="Submit">
+    <input type="submit" name="" value="Submit" class="btn btn btn-primary">
 
   </form>
 @endsection

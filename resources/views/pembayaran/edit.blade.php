@@ -3,6 +3,7 @@
 @section('contentcreate')
   <form class="" action="/pembayaran/{{$susu->NomorByr}}" method="post">
     {{csrf_field()}}
+    <input type="hidden" name="_method" value="put">
     <div class="form-group">
       <label for="">Nomor Bayar</label>
       <input type="text" name="NomorByr" class="form-control" value="{{$susu->NomorByr}}" disabled>
@@ -19,7 +20,7 @@
       <label for="">Jumlah Bayar</label>
       <input type="text" name="JumlahByr" class="form-control" value="{{$susu->JumlahByr}}">
     </div>
-    <input type="submit" name="" value="Submit">
+    <input type="submit" name="" value="Submit" class="btn btn-primary">
 
   </form>
 @endsection

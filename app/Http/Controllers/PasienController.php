@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Pasien;
 
 use Illuminate\Http\Request;
+use App\Pasien;
 
 class PasienController extends Controller
 {
@@ -14,9 +14,8 @@ class PasienController extends Controller
      */
     public function index()
     {
-        //
         $a=Pasien::all();
-        return view ('Pasien.index')->with('b',$a);
+        return view ('pasien.index')->with('b',$a);
     }
 
     /**
@@ -26,8 +25,7 @@ class PasienController extends Controller
      */
     public function create()
     {
-        //
-        return view ('Pasien.create');
+        return view ('pasien.create');
     }
 
     /**
@@ -38,27 +36,26 @@ class PasienController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $this->validate($request, [
-          'KodePsn'=>'required',
-          'NamaPsn'=>'required',
-          'AlamatPsn'=>'required',
-          'GanderPsn'=>'required',
-          'UmurPsn'=>'required',
-          'TeleponPsn'=>'required',
+            'kode_psn'=>'required',
+            'nama_psn'=>'required',
+            'alamat_psn'=>'required',
+            'gender_psn'=>'required',
+            'umur_psn'=>'required',
+            'telepon_psn'=>'required',
+            ]);
 
-        ]);
-        $c=new Pasien();
-        $c->KodePsn=$request->KodePsn;
-        $c->NamaPsn=$request->NamaPsn;
-        $c->AlamatPsn=$request->AlamatPsn;
-        $c->GenderPsn=$request->GenderPsn
-        $c->UmurPsn=$request->UmurPsn;
-        $c->TeleponPsn=$request->TeleponPsn;
+        $c = new Pasien();
+        $c->kode_psn=$request->kode_psn;
+        $c->nama_psn=$request->nama_psn;
+        $c->alamat_psn=$request->alamat_psn;
+        $c->gender_psn=$request->gender_psn;
+        $c->umur_psn=$request->umur_psn;
+        $c->telepon_psn=$request->telepon_psn;
         $c->save();
 
+        return redirect('pasien');
 
-        ]);
     }
 
     /**
@@ -80,7 +77,9 @@ class PasienController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sau = Pasien::find($id);
+
+        return view('pasien.edit')->with('sa',$sau);
     }
 
     /**
@@ -92,7 +91,25 @@ class PasienController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'kode_psn'=>'required',
+            'nama_psn'=>'required',
+            'alamat_psn'=>'required',
+            'gender_psn'=>'required',
+            'umur_psn'=>'required',
+            'telepon_psn'=>'required',
+            ]);
+
+        $sa = Pasien::find($id);
+        $sa->kode_psn=$request->kode_psn;
+        $sa->nama_psn=$request->nama_psn;
+        $sa->alamat_psn=$request->alamat_psn;
+        $sa->gender_psn=$request->gender_psn;
+        $sa->umur_psn=$request->umur_psn;
+        $sa->telepon_psn=$request->telepon_psn;
+        $sa->save();
+
+        return redirect('pasien');
     }
 
     /**
@@ -103,6 +120,9 @@ class PasienController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $sa = Pasien::find($id);
+         $sa->delete();
+
+         return redirect('pasien');
     }
 }

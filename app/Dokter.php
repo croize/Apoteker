@@ -11,4 +11,20 @@ class Dokter extends Model
     public $timestamps=false;
     protected $primaryKey = 'KodeDkt';
     public $incrementing = false;
+
+    public function resep()
+    {
+        return $this->hasMany('App\Resep');
+    }
+
+    public function pendaftaran()
+    {
+        return $this->hasMany('App\Pendaftaran');
+    }
+
+    public function resep()
+    {
+        return $this->belongsTo('App\Poliklinik');
+    }
+
 }

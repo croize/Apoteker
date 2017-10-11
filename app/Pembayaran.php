@@ -10,4 +10,9 @@ class Pembayaran extends Model
     protected $primaryKey = 'NomorByr';
     public $timestamps = false;
     public $incrementing = false;
+
+    public function pasien()
+    {
+        return $this->belongsTo('App\Pasien');
+    }
 }
