@@ -13,6 +13,6 @@ class Pembayaran extends Model
 
     public function pasien()
     {
-        return $this->belongsTo('App\Pasien');
+        return $this->belongsTo('App\Pasien','KodePsn','kode_psn');
     }
 }

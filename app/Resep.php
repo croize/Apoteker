@@ -18,17 +18,17 @@ class Resep extends Model
 
     public function dokter()
    {
-       return $this->belongsTo('App\Dokter');
+       return $this->belongsTo('App\Dokter','KodeDkt','KodeDkt');
    }
 
    public function pasien()
   {
-      return $this->belongsTo('App\Pasien');
+      return $this->belongsTo('App\Pasien','KodePsn','kode_psn');
   }
 
   public function poliklinik()
  {
-     return $this->belongsTo('App\Poliklinik');
+     return $this->belongsTo('App\Poliklinik','KodePlk','KodePlk');
  }
 
 }

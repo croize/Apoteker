@@ -1,5 +1,13 @@
 @extends('layout.allapp')
 
+@section('juduldata')
+	Poliklinik
+@endsection
+
+@section('contentcreate')
+	<a href="/poli/create" class="btn btn-primary">CREATE</a>
+@endsection
+
 @section('content')
     <th>Kode Poliklinik</th>
     <th>Nama Poliklinik</th>

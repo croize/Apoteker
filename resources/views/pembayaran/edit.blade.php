@@ -10,7 +10,12 @@
     </div>
     <div class="form-group">
       <label for="">Kode Pasien</label>
-      <input type="text" name="KodePsn" class="form-control" value="{{$susu->KodePsn}}">
+      <select class="form-control" name="KodePsn">
+        <option value="">--Select--</option>
+        @foreach($asa as $pas)
+        <option value="{{$pas->kode_psn}}"@if(($pas->kode_psn)==($susu->KodePsn)) selected @endif>{{$pas->nama_psn}}</option>
+        @endforeach
+      </select>
     </div>
     <div class="form-group">
       <label for="">Tanggal Bayar</label>

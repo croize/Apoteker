@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pembayaran;
+use App\Pasien;
 
 class PembayaranController extends Controller
 {
@@ -12,6 +13,12 @@ class PembayaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
     public function index()
     {
         $as = Pembayaran::all();
@@ -25,7 +32,8 @@ class PembayaranController extends Controller
      */
     public function create()
     {
-        return view('pembayaran.create');
+      $a = Pasien::all();
+        return view('pembayaran.create')->with('as',$a);
     }
 
     /**
@@ -73,7 +81,8 @@ class PembayaranController extends Controller
     public function edit($id)
     {
         $as = Pembayaran::find($id);
-        return view('pembayaran.edit')->with('susu',$as);
+        $a = Pasien::all();
+        return view('pembayaran.edit')->with('susu',$as)->with('asa',$a);
     }
 
     /**

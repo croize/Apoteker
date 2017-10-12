@@ -3,15 +3,20 @@
     Resep
     @endsection
 
+@section('contentcreate')
+  <a href="/resep/create" class="btn btn-primary">CREATE</a>
+@endsection
+
       @section('content')
       <th>Nomor Resep</th>
       <th>Tanggal</th>
-      <th>Kode Pasien</th>
-      <th>Kode Dokter</th>
-      <th>Kode Poliklinik</th>
+      <th>Nama Pasien</th>
+      <th>Nama Dokter</th>
+      <th>Nama Poliklinik</th>
       <th>Total Harga</th>
       <th>Bayar</th>
-      <th>Kembali</td>
+      <th>Kembali</th>
+      <th>Action</th>
       @endsection
 
       @section('pencarian')
@@ -34,14 +39,17 @@
 
       @section('data')
           @foreach($vala as $uy)
+          <tr>
             <td>{{$uy->NomorResep}}</td>
             <td>{{$uy->TanggalResep}}</td>
-            <td>{{$uy->KodePsn}}</td>
-            <td>{{$uy->KodeDkt}}</td>
-            <td>{{$uy->KodePlk}}</td>
+            <td>{{$uy->pasien['nama_psn']}}</td>
+            <td>{{$uy->dokter['NamaDkt']}}</td>
+            <td>{{$uy->poliklinik['NamaPlk']}}</td>
             <td>{{$uy->TotalHarga}}</td>
             <td>{{$uy->Bayar}}</td>
             <td>{{$uy->Kembali}}</td>
+            <td><a href="/resep/{{$uy->NomorResep}}/edit" class="btn btn-primary">EDIT</a> <a href="{{url('resep/delete',$uy->NomorResep)}}" class="btn btn-danger">DELETE</a></td>
+            </tr>
           @endforeach
       @endsection
 

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Dokter;
-
+use App\Poliklinik;
+use Auth;
 
 class DokterController extends Controller
 {
@@ -15,9 +16,13 @@ class DokterController extends Controller
      */
     public function index()
     {
-        //
-        $a=Dokter::all();
-        return view ('Dokter.index')->with('b',$a);
+        if (Auth::check()) {
+          $a=Dokter::all();
+          return view ('Dokter.index')->with('b',$a);
+        }else{
+          return redirect('login');
+        }
+
 
     }
 
@@ -28,8 +33,13 @@ class DokterController extends Controller
      */
     public function create()
     {
-        //
-          return view ('Dokter.create');
+      if (Auth::check()) {
+        $as = Poliklinik::all();
+        return view ('Dokter.create')->with('sa' ,$as);
+      }else{
+        return redirec('login');
+      }
+
     }
 
     /**
@@ -41,7 +51,7 @@ class DokterController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-        'KodeDkt'=>'required',
+        'KodeDkt' => 'required',
         'NamaDkt'=>'required',
         'Spesialis'=>'required',
         'AlamatDkt'=>'required',
@@ -83,9 +93,14 @@ class DokterController extends Controller
      */
     public function edit($id)
     {
-        //
-        $a=Dokter::find($id);
-        return view ('Dokter.edit')->with('b',$a);
+        if (Auth::check()) {
+          $a=Dokter::find($id);
+          $b = Poliklinik::all();
+          return view ('Dokter.edit')->with('b',$a)->with('c',$b);
+        }else{
+          return redirect('login');
+        }
+
     }
 
     /**
@@ -99,7 +114,6 @@ class DokterController extends Controller
     {
         //
         $this->validate($request, [
-          'KodeDkt'=>'required',
           'NamaDkt'=>'required',
           'Spesialis'=>'required',
           'AlamatDkt'=>'required',
@@ -109,7 +123,6 @@ class DokterController extends Controller
         ]);
 
         $c=Dokter::find($id);
-        $c->KodeDkt=$request->KodeDkt;
         $c->NamaDkt=$request->NamaDkt;
         $c->Spesialis=$request->Spesialis;
         $c->AlamatDkt=$request->AlamatDkt;

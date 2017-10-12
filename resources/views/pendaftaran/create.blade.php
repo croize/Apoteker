@@ -12,21 +12,31 @@
     <input type="text" class="form-control" name="TanggalPendf" id="TanggalPendf" placeholder="Tanggal Pendaftaran">
   </div>
   <div class="form-group">
-      <label for="KodeDkt">Nama Dokter:</label>
-      <select class="form-control" id="KodeDkt" name="KodeDkt">
+      <label>Nama Dokter:</label>
+      <select class="form-control"  name="KodeDkt">
+        <option value="">--Select--</option>
         @foreach($b as $u)
-          <option value="">--Select--</option>
           <option value="{{$u->KodeDkt}}">{{$u->NamaDkt}}</option>
         @endforeach
       </select>
   </div>
   <div class="form-group">
-    <label for="Pendaftaran">Nama Pasien</label>
-    <input type="text" class="form-control" name="KodePsn" id="Pendaftaran" placeholder="Nama Pasien">
+    <label >Nama Pasien</label>
+    <select class="form-control"  name="KodePsn">
+      <option value="">--Select--</option>
+      @foreach($bs as $pas)
+        <option value="{{$pas->kode_psn}}">{{$pas->nama_psn}}</option>
+      @endforeach
+    </select>
   </div>
   <div class="form-group">
-    <label for="Pendaftaran">Kode Poliklinik</label>
-    <input type="text" class="form-control" name="KodePlk" id="Pendaftaran" placeholder="Kode Poliklinik">
+    <label >Kode Poliklinik</label>
+    <select class="form-control"  name="KodePlk">
+      <option value="">--Select--</option>
+      @foreach($cs as $pol)
+        <option value="{{$pol->KodePlk}}">{{$pol->NamaPlk}}</option>
+      @endforeach
+    </select>
   </div>
   <div class="form-group">
     <label for="Pendaftaran">Biaya</label>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Obat;
+use Auth;
 
 class ObatController extends Controller
 {
@@ -14,8 +15,13 @@ class ObatController extends Controller
    */
   public function index()
   {
+    if (Auth::check()) {
       $datas= Obat::orderBy('Kode_Obat' , 'ASC')->paginate(10);
       return view('Obat.show')->with('datas', $datas);
+    }else{
+      return redirect('login');
+    }
+
   }
   /**
    * Show the form for creating a new resource.
@@ -24,7 +30,12 @@ class ObatController extends Controller
    */
   public function create()
   {
-     return view('Obat.create');
+    if (Auth::check()) {
+      return view('Obat.create');
+    }else{
+      return redirect('login');
+    }
+
   }
   /**
    * Store a newly created resource in storage.
@@ -71,8 +82,13 @@ class ObatController extends Controller
    */
   public function edit($id)
   {
-      $tampiledit =Obat::where('Kode_Obat', $id)->first();
-      return view ('Obat.edit')->with('tampiledit', $tampiledit);
+      if (Auth::check()) {
+        $tampiledit =Obat::where('Kode_Obat', $id)->first();
+        return view ('Obat.edit')->with('tampiledit', $tampiledit);
+      }else{
+        return redirect('login');
+      }
+
   }
   /**
    * Update the specified resource in storage.

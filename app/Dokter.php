@@ -22,9 +22,9 @@ class Dokter extends Model
         return $this->hasMany('App\Pendaftaran');
     }
 
-    public function resep()
+    public function poliklinik()
     {
-        return $this->belongsTo('App\Poliklinik');
+        return $this->belongsTo('App\Poliklinik','KodePIk','KodePlk');
     }
 
 }

@@ -16,9 +16,14 @@ Route::get('/', function () {
 });
 
 Route::resource('resep', 'ResepController');
+Route::get('/resep/delete/{id}','ResepController@destroy');
+
 Route::resource('pendaftaran', 'PendaftaranController');
 Route::get('/pendaftaran/delete/{id}','PendaftaranController@destroy');
+
 Route::resource('dokter', 'DokterController');
+Route::get('/dokter/delete/{id}','DokterController@destroy');
+
 Route::resource('poli', 'PoliklinikController');
 Route::get('/poli/delete/{id}','PoliklinikController@destroy');
 
@@ -33,5 +38,11 @@ Route::resource('pembayaran', 'PembayaranController');
 Route::get('/pembayaran/delete/{id}','PembayaranController@destroy');
 
 Route::resource('detail', 'DetailController');
+Route::get('/detail/delete/{id}','DetailController@destroy');
+
 Route::resource('pasien', 'PasienController');
 Route::get('/pasien/delete/{id}','PasienController@destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

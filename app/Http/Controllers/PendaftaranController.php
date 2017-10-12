@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pendaftaran;
 use App\Dokter;
+use App\Pasien;
+use App\Poliklinik;
 
 class PendaftaranController extends Controller
 {
@@ -13,6 +15,12 @@ class PendaftaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
     public function index()
     {
         $a = Pendaftaran::all();
@@ -27,7 +35,9 @@ class PendaftaranController extends Controller
     public function create()
     {
         $a = Dokter::all();
-        return view('pendaftaran.create')->with('b', $a);
+        $b = Pasien::all();
+        $c = Poliklinik::all();
+        return view('pendaftaran.create')->with('b', $a)->with('cs', $c)->with('bs', $b);
     }
 
     /**
@@ -44,7 +54,7 @@ class PendaftaranController extends Controller
           'KodeDkt' => 'required',
           'KodePsn' => 'required',
           'KodePlk' => 'required',
-          'Biaya' => 'required | integer',
+          'Biaya' => 'required',
           'Ket' => 'required',
         ]);
 
@@ -83,7 +93,9 @@ class PendaftaranController extends Controller
     {
         $b = Pendaftaran::find($id);
         $c = Dokter::all();
-        return view('pendaftaran.edit')->with('yu', $b)->with('b', $c);
+        $ba = Pasien::all();
+        $ca = Poliklinik::all();
+        return view('pendaftaran.edit')->with('yu', $b)->with('b', $c)->with('bs', $ba)->with('cs', $ca);
     }
 
     /**
@@ -96,7 +108,6 @@ class PendaftaranController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request,[
-        'NomorPendf' => 'required',
         'TanggalPendf' => 'required',
         'KodeDkt' => 'required',
         'KodePsn' => 'required',
@@ -125,6 +136,8 @@ class PendaftaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $b = Pendaftaran::find($id);
+        $b->delete();
+        return redirect('pendaftaran');
     }
 }

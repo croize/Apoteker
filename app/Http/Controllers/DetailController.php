@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Detail;
 use App\Resep;
 use App\Obat;
+use Auth;
 
 class DetailController extends Controller
 {
@@ -16,8 +17,13 @@ class DetailController extends Controller
      */
     public function index()
     {
+      if (Auth::check()) {
         $datas= Detail::all();
         return view('detail.index')->with('datas', $datas);
+      }else{
+        return redirect('login');
+      }
+
     }
 
     /**
@@ -27,9 +33,14 @@ class DetailController extends Controller
      */
     public function create()
     {
+      if (Auth::check()) {
         $as = Resep::all();
         $ob = Obat::all();
         return view('detail.create')->with('sa' ,$as)->with('ba', $ob);
+      }else{
+        return redirect('login');
+      }
+
     }
 
     /**
@@ -78,10 +89,16 @@ class DetailController extends Controller
      */
     public function edit($id)
     {
+
+      if (Auth::check()) {
         $tampiledit =Detail::where('id', $id)->first();
         $as = Resep::all();
         $bat = Obat::all();
         return view ('detail.edit')->with('tampiledit', $tampiledit)->with('tab', $bat)->with('res', $as);
+      }else{
+        return redirect('login');
+      }
+
     }
 
     /**

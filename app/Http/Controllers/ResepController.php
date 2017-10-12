@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Resep;
+use App\Dokter;
+use App\Pasien;
+use App\Poliklinik;
 
 class ResepController extends Controller
 {
@@ -12,6 +15,12 @@ class ResepController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
     public function index(Request $request)
     {
         $query = $request->get('q');
@@ -26,7 +35,10 @@ class ResepController extends Controller
      */
     public function create()
     {
-        return view('resep.create'); // resep = nama folder | create = nama file di folder resep
+        $a = Dokter::all();
+        $b = Pasien::all();
+        $c = Poliklinik::all();
+        return view('resep.create')->with('as', $a)->with('bs', $b)->with('cs', $c); // resep = nama folder | create = nama file di folder resep
     }
 
     /**
@@ -84,7 +96,10 @@ class ResepController extends Controller
     public function edit($id)
     {
         $as = Resep::find($id);
-        return view('resep.edit')->with('su',$as);
+        $a = Dokter::all();
+        $b = Pasien::all();
+        $c = Poliklinik::all();
+        return view('resep.edit')->with('su',$as)->with('as',$a)->with('bs',$b)->with('cs',$c);
     }
 
     /**
@@ -98,7 +113,6 @@ class ResepController extends Controller
     {
       //Ini NomorResep , dll yang berada di line 41 - 47 merupakan atribute dari Table Resep
       $this->validate($request, [
-        'NomorResep' => 'required',
         'TanggalResep' => 'required',
         'KodeDkt' => 'required',
         'KodePsn' => 'required',
@@ -108,7 +122,6 @@ class ResepController extends Controller
       ]);
 
         $u = Resep::find($id); // <---- Resep itu adalah nama model nya
-        $u->NomorResep = $request->NomorResep;
         $u->TanggalResep = $request->TanggalResep;// $u->atributetable = $request->nameyangdiform
         $u->KodeDkt = $request->KodeDkt;
         $u->KodePsn = $request->KodePsn;
@@ -130,6 +143,8 @@ class ResepController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $u = Resep::find($id);
+        $u->delete();
+        return redirect('resep');
     }
 }

@@ -21,27 +21,10 @@
 
   <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">APOTEKER</a>
+      <a class="navbar-brand" href="/home">APOTEKER</a>
       <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Help</a>
-          </li>
-        </ul>
-      </div>
     </nav>
 
     <div class="container-fluid">
@@ -49,51 +32,37 @@
         <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="#">Overview <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/pendaftaran">Pendaftaran</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Reports</a>
+              <a class="nav-link" href="/pembayaran">Pembayaran</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Analytics</a>
+              <a class="nav-link" href="/dokter">Dokter</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Export</a>
-            </li>
-          </ul>
-
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Nav item</a>
+              <a class="nav-link" href="/pasien">Pasien</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Nav item again</a>
+              <a class="nav-link" href="/poli">Poliklinik</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">One more nav</a>
+              <a class="nav-link" href="/resep">Resep</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Another nav item</a>
-            </li>
-          </ul>
-
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Nav item again</a>
+              <a class="nav-link" href="/obat">Obat</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">One more nav</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Another nav item</a>
+              <a class="nav-link" href="/detail">Detail</a>
             </li>
           </ul>
         </nav>
 
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
           <h1>Dashboard</h1>
-          @yield('contentcreate')
+
           <h2>@yield('juduldata')</h2>
+          @yield('contentcreate')
           @yield('pencarian')
           @yield('alert')
           <div class="table-responsive">

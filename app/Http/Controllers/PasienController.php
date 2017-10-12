@@ -12,6 +12,12 @@ class PasienController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
     public function index()
     {
         $a=Pasien::all();
@@ -92,7 +98,6 @@ class PasienController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'kode_psn'=>'required',
             'nama_psn'=>'required',
             'alamat_psn'=>'required',
             'gender_psn'=>'required',
@@ -101,7 +106,6 @@ class PasienController extends Controller
             ]);
 
         $sa = Pasien::find($id);
-        $sa->kode_psn=$request->kode_psn;
         $sa->nama_psn=$request->nama_psn;
         $sa->alamat_psn=$request->alamat_psn;
         $sa->gender_psn=$request->gender_psn;
