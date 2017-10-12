@@ -14,9 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+//Resep Route
 Route::resource('resep', 'ResepController');
 Route::get('/resep/delete/{id}','ResepController@destroy');
+//End Route
 
 Route::resource('pendaftaran', 'PendaftaranController');
 Route::get('/pendaftaran/delete/{id}','PendaftaranController@destroy');
