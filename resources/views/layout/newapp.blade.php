@@ -129,47 +129,52 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview">
+        <li class="">
           <a href="/home">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="">
+          <a href="/home">
+            <i class="fa fa-user-md"></i> <span>Request Dokter</span>
+          </a>
+        </li>
+        <li class="">
           <a href="/pendaftaran">
             <i class="fa fa-user-plus"></i> <span>Pendaftaran</span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="">
           <a href="/pembayaran">
             <i class="fa fa-money"></i> <span>Pembayaran</span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="">
           <a href="/obat">
             <i class="fa fa-medkit"></i> <span>Obat</span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="">
           <a href="/dokter">
             <i class="fa fa-stethoscope"></i> <span>Dokter</span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="">
           <a href="/pasien">
             <i class="fa fa-wheelchair"></i> <span>Pasien</span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="">
           <a href="/detail">
             <i class="fa fa-sticky-note"></i> <span>Detail</span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="">
           <a href="/resep">
             <i class="fa fa-heartbeat"></i> <span>Resep</span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="">
           <a href="/poli">
             <i class="fa fa-ambulance"></i> <span>Poliklinik</span>
           </a>
