@@ -14,6 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/dokter/register', function () {
+    return view('auth.dokter_reg');
+});
+Route::get('/pasien/register', function () {
+    return view('auth.pasien_reg');
+});
 //Resep Route
 Route::resource('resep', 'ResepController');
 Route::get('/resep/delete/{id}','ResepController@destroy');
